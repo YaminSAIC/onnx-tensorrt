@@ -32,6 +32,7 @@
 
 namespace onnx2trt {
 
+// 确定数据类型 其实是把tensorrt的数据类型翻译成数字
 inline int get_dtype_size(nvinfer1::DataType trt_dtype) {
   switch( trt_dtype ) {
   case nvinfer1::DataType::kFLOAT: return 4;
@@ -47,6 +48,7 @@ inline int get_dtype_size(nvinfer1::DataType trt_dtype) {
   }
 }
 
+// 向量化长度
 inline int64_t get_shape_size(nvinfer1::Dims shape) {
   // Returns total number of elements in shape
   if( shape.nbDims == 0 ) {
@@ -59,6 +61,7 @@ inline int64_t get_shape_size(nvinfer1::Dims shape) {
   return count;
 }
 
+// 在dims变量插入一个新值并不是inplace
 inline nvinfer1::Dims insert_dim(nvinfer1::Dims const& dims, int idx, int value) {
   assert(idx < dims.nbDims + 1);
   nvinfer1::Dims new_dims;
@@ -75,6 +78,7 @@ inline nvinfer1::Dims insert_dim(nvinfer1::Dims const& dims, int idx, int value)
   return new_dims;
 }
 
+// 
 inline nvinfer1::Dims remove_dim(nvinfer1::Dims const& dims, int idx) {
   assert(idx < dims.nbDims);
   nvinfer1::Dims new_dims;
