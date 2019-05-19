@@ -24,5 +24,6 @@
 
 #include <unordered_map>
 
+// 仅仅定义一个map
 template<typename T>
 using string_map = std::unordered_map<std::string, T>;
