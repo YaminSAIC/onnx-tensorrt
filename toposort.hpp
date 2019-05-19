@@ -34,6 +34,7 @@ namespace {
 
 enum NodeState { NODE_UNVISITED, NODE_ACTIVE, NODE_VISITED };
 
+// 看来所谓的图计算真是op存在图里面然后按照图来计算。。。
 template<class Container>
 bool get_post_order(size_t node_idx,
                     Container const& nodes,
